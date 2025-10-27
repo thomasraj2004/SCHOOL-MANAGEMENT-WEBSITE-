@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Portal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('19septnews_10.jpg') center/cover no-repeat;
+      font-family: Arial, sans-serif;
+    }
+
+    .login-box {
+      width: 90%;
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      color: #000;
+    }
+
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #004d99;
+    }
+
+    .login-box label {
+      font-weight: bold;
+    }
+
+    .login-box input,
+    .login-box select,
+    .login-box button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .login-box button {
+      background: #004d99;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .login-box button:hover {
+      background: #003366;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <h2>Student & Teacher Login</h2>
+    <form id="loginForm">
+      <label for="role">Select Role:</label>
+      <select id="role" required>
+        <option value="">-- Select --</option>
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+      </select>
+
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    
+    localStorage.clear();
+
+    
+    const students = [
+      { username: "siva", std: "10A", gender: "Male", address: "Madurai", father: "Raj", mother: "Latha", guardian: "Uncle Kumar", phone: "9876543210" },
+      { username: "meena", std: "9B", gender: "Female", address: "Madurai", father: "Selvam", mother: "Revathi", guardian: "Aunt Devi", phone: "8765432109" },
+      { username: "arun", std: "10B", gender: "Male", address: "Chennai", father: "Ramesh", mother: "Kavitha", guardian: "Uncle Mani", phone: "9123456780" },
+      { username: "kavya", std: "11A", gender: "Female", address: "Coimbatore", father: "Sundar", mother: "Meena", guardian: "Aunt Priya", phone: "9234567891" },
+      { username: "raj", std: "12A", gender: "Male", address: "Madurai", father: "Mani", mother: "Radha", guardian: "Grandfather", phone: "9345678902" },
+      { username: "divya", std: "10C", gender: "Female", address: "Chennai", father: "Kumar", mother: "Anita", guardian: "Uncle Raju", phone: "9456789013" },
+      { username: "vijay", std: "9A", gender: "Male", address: "Coimbatore", father: "Ravi", mother: "Rekha", guardian: "Uncle Rajan", phone: "9567890124" },
+      { username: "nisha", std: "12B", gender: "Female", address: "Madurai", father: "Suresh", mother: "Kala", guardian: "Aunt Latha", phone: "9678901235" },
+      { username: "arjun", std: "11B", gender: "Male", address: "Chennai", father: "Prakash", mother: "Sonia", guardian: "Uncle Rajesh", phone: "9789012346" },
+      { username: "anita", std: "10D", gender: "Female", address: "Coimbatore", father: "Vinod", mother: "Maya", guardian: "Aunt Sita", phone: "9890123457" }
+    ];
+
+   
+    const teachers = [
+      { username: "mohan", subject: "English", phone: "9556677881", gender: "Male" },
+      { username: "geetha", subject: "Physics", phone: "9667788990", gender: "Female" },
+      { username: "rajesh", subject: "Maths", phone: "9778899001", gender: "Male" },
+      { username: "anita_t", subject: "Chemistry", phone: "9889900112", gender: "Female" },
+      { username: "vijay_t", subject: "Biology", phone: "9990011223", gender: "Male" }
+    ];
+
+    
+    const users = [
+      ...students.map(s => ({ role: "student", username: s.username, password: s.username })),
+      ...teachers.map(t => ({ role: "teacher", username: t.username, password: t.username }))
+    ];
+
+    localStorage.setItem('studentData', JSON.stringify(students));
+    localStorage.setItem('teacherData', JSON.stringify(teachers));
+    localStorage.setItem('users', JSON.stringify(users));
+
+    const form = document.getElementById('loginForm');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const role = document.getElementById('role').value;
+      const username = document.getElementById('username').value.trim().toLowerCase();
+      const password = document.getElementById('password').value.trim().toLowerCase();
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+
+      const user = users.find(u => u.role === role && u.username.toLowerCase() === username && u.password.toLowerCase() === password);
+
+      if (user) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        window.location.href = user.role === "student" ? "student-dashboard.html" : "teacher-dashboard.html";
+      } else {
+        alert("❌ Invalid username or password!");
+      }
+    });
+  </script>
+</body>
+</html>

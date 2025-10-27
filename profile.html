@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Profile Details</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #24abcc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .profile-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 450px;
+  }
+  h2 { color: #004d99; text-align: center; margin-bottom: 20px; }
+  p { font-size: 1rem; margin: 8px 0; }
+  .back-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background: #004d99;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .back-btn:hover { background: #003366; }
+</style>
+</head>
+<body>
+
+  <div class="profile-box">
+    <h2 id="profileTitle">Profile Details</h2>
+    <div id="profileInfo"></div>
+    <button class="back-btn" onclick="goBack()">Back</button>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    const students = JSON.parse(localStorage.getItem('studentData'));
+    const teachers = JSON.parse(localStorage.getItem('teacherData'));
+    const infoBox = document.getElementById('profileInfo');
+    const title = document.getElementById('profileTitle');
+
+    if (!user) window.location.href = "login.html";
+
+    if (user.role === "student") {
+      const data = students.find(s => s.username === user.username);
+      title.textContent = "Student Profile";
+      infoBox.innerHTML = data ? `
+        <p><strong>Name:</strong> ${data.username}</p>
+        <p><strong>Standard:</strong> ${data.std}</p>
+        <p><strong>Gender:</strong> ${data.gender}</p>
+        <p><strong>Address:</strong> ${data.address}</p>
+        <p><strong>Father Name:</strong> ${data.father}</p>
+        <p><strong>Mother Name:</strong> ${data.mother}</p>
+        <p><strong>Guardian:</strong> ${data.guardian}</p>
+        <p><strong>Phone:</strong> ${data.phone}</p>
+      ` : `<p>No student data found.</p>`;
+    } else {
+      const data = teachers.find(t => t.username === user.username);
+      title.textContent = "Teacher Profile";
+      infoBox.innerHTML = data ? `
+        <p><strong>Name:</strong> ${data.username}</p>
+        <p><strong>Gender:</strong> ${data.gender}</p>
+        <p><strong>Subject:</strong> ${data.subject}</p>
+        <p><strong>Phone:</strong> ${data.phone}</p>
+      ` : `<p>No teacher data found.</p>`;
+    }
+
+    function goBack() {
+      window.location.href = user.role === "student" ? "student-dashboard.html" : "teacher-dashboard.html";
+    }
+  </script>
+
+</body>
+</html>

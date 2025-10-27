@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>St. Britto Hr. Sec. School</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+  <header>
+    <div class="logo">
+      <img src="images.png" alt="School Logo">
+      <span>St. Britto Hr. Sec. School</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#academics">Academics</a></li>
+        <li><a href="admission.html" target="_blank">Admission</a></li>
+        <li><a href="login.html" target="_blank">Login</a></li>
+        <li><a href="#notice">Notice Board</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  
+  <section id="home">
+    <h1>Welcome to St. Britto Hr. Sec. School</h1>
+    <p>Excellence in Education, Discipline, and Character Building since 1968.</p>
+  </section>
+
+ 
+  <section id="about">
+    <h2>About Us</h2>
+    <div class="about-container">
+      <img src="St-Britto-Higher-Secondary-School-Campus-View.jpg" alt="School Campus">
+      <div class="about-text">
+        <p><strong>St. Britto Higher Secondary School</strong> was founded by the then Archbishop of Madurai Arch Diocese, Most Rev. Dr. Justin Diraviam, on 22nd June 1968. Our mission is to provide academic excellence combined with moral and spiritual values.</p>
+
+        <p>The school is named after <strong>St. John De Britto</strong>, who devoted his life to faith, justice, and service. For more than five decades, St. Britto has nurtured students to become leaders with integrity and compassion.</p>
+
+        <p>We believe in holistic education — empowering students intellectually, emotionally, and socially to contribute positively to society.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="academics">
+    <h2>Academics</h2>
+
+   
+    <div class="grid" id="academics-grid">
+      <div class="card" onclick="showDetail('highschool')">High School</div>
+      <div class="card" onclick="showDetail('laboratories')">Laboratories</div>
+      <div class="card" onclick="showDetail('library')">Library</div>
+    </div>
+
+    <div id="highschool" class="academic-detail">
+      <img src="images.jpg" alt="High School Image">
+      <h3>High School</h3>
+      <p>Our High School provides a robust curriculum focusing on academic excellence, critical thinking, and personal growth.</p>
+      <p>Facilities include well-equipped classrooms, laboratories, and extracurricular activities to nurture holistic development.</p>
+      <button class="back-btn" onclick="goBack()">Back</button>
+    </div>
+
+   
+    <div id="laboratories" class="academic-detail">
+      <img src="wp3157525.jpg" alt="Laboratories Image">
+      <h3>Laboratories</h3>
+      <p>Our laboratories are fully equipped to provide hands-on practical knowledge in science and technology.</p>
+      <p>We have separate labs for Physics, Chemistry, Biology, and Computer Science, enabling students to explore under expert supervision.</p>
+      <button class="back-btn" onclick="goBack()">Back</button>
+    </div>
+
+  
+    <div id="library" class="academic-detail">
+      <img src="OIP.jpg" alt="Library Image">
+      <h3>Library</h3>
+      <p>Our library offers a rich collection of books, journals, and digital resources. It encourages reading habits and supports academic excellence.</p>
+      <p>Students enjoy a peaceful reading environment for learning and research.</p>
+      <button class="back-btn" onclick="goBack()">Back</button>
+    </div>
+  </section>
+
+  
+  <section id="notice">
+    <h2>Notice Board</h2>
+    <ul>
+      <li>Annual Day Celebration – Nov 20</li>
+      <li>Mid-term Exams – from Dec 1</li>
+      <li>New Library Inauguration</li>
+    </ul>
+  </section>
+
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>1A-West Ponnagaram II Street, A.A Road, Gnanaolivupuram, Madurai, Tamil Nadu-625016</p>
+    <p>Email: stbrittohrsecschool@gmail.com | raja.cs.sbhss@gmail.com</p>
+    <p>Phone: 0452-2362257</p>
+  </section>
+
+ 
+  <footer>
+    <p>&copy; 2025 St. Britto Hr. Sec. School | All Rights Reserved</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
